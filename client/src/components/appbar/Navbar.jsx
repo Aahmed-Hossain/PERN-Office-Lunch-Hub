@@ -3,7 +3,7 @@ import MenuDropdown from './MenuDropdown'
 
 const Navbar = () => {
   return (
-    <div className='fixed flex justify-between w-full mx-auto py-2 bg-white px-8 border-b'>
+    <div className=' flex justify-between w-full mx-auto py-2 bg-white px-8 border-b'>
           
             {/* Logo */}
             <Link to='/'>
