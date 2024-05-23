@@ -1,7 +1,7 @@
 import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
 import { Link, } from "react-router-dom";
-
+import  avatarImg from '../../assets/images/placeholder.jpg'
 // import useAuth from "../../hooks/useAuth";
 // import avatarImg from "../../assets/images/logo/placeholder.jpg";
 // import Swal from "sweetalert2";
@@ -11,7 +11,7 @@ const MenuDropdown = () => {
 //   const navigateToLogin = useNavigate()
 //   const { user,logOut } = useAuth();
   const { user,logOut } = useState(false);
-  const  avatarImg = ''
+
   const handleLogout = async () => {
     logOut
     // try {
