@@ -5,7 +5,7 @@
     "items": ["chicken", "basmati rice", "vegetables", "salad"],
     "description": "Aromatic basmati rice cooked with tender chicken, spices, and herbs.",
     "price": 12.99,
-    "image": "/images/chicken-biryani.jpg",
+    "image": "https://i.ibb.co/99ffNYX/pizza11.jpg",
     "nutritionalInfo": {
       "calories": 400,
       "protein": "30g",
@@ -19,7 +19,7 @@
     "items": ["salmon", "lemon", "herbs", "mixed vegetables"],
     "description": "Grilled salmon served with a side of mixed vegetables and a lemon herb dressing.",
     "price": 15.99,
-    "image": "/images/grilled-salmon.jpg",
+    "image": "https://i.ibb.co/qJJXzTX/steak1.jpg",
     "nutritionalInfo": {
       "calories": 350,
       "protein": "35g",
@@ -33,7 +33,7 @@
     "items": ["broccoli", "bell peppers", "carrots", "tofu", "soy sauce"],
     "description": "A vibrant mix of vegetables stir-fried with tofu and a savory soy sauce.",
     "price": 10.99,
-    "image": "/images/vegetable-stir-fry.jpg",
+    "image": "https://i.ibb.co/jW9vCnP/french-fries-10.jpg",
     "nutritionalInfo": {
       "calories": 300,
       "protein": "12g",
@@ -47,7 +47,7 @@
     "items": ["beef", "tortillas", "lettuce", "cheese", "salsa"],
     "description": "Soft tortillas filled with seasoned beef, fresh lettuce, cheese, and salsa.",
     "price": 11.49,
-    "image": "/images/beef-tacos.jpg",
+    "image": "https://i.ibb.co/1r4xptG/chicken-11.jpg",
     "nutritionalInfo": {
       "calories": 450,
       "protein": "28g",
@@ -61,7 +61,7 @@
     "items": ["quinoa", "cherry tomatoes", "cucumbers", "feta cheese", "olives"],
     "description": "A refreshing salad with quinoa, cherry tomatoes, cucumbers, feta cheese, and olives.",
     "price": 9.99,
-    "image": "/images/quinoa-salad.jpg",
+    "image": "https://i.ibb.co/r08LTzD/dessert-2.jpg",
     "nutritionalInfo": {
       "calories": 280,
       "protein": "10g",
@@ -75,7 +75,7 @@
     "items": ["chicken breast", "romaine lettuce", "croutons", "parmesan cheese", "caesar dressing"],
     "description": "Grilled chicken breast served on a bed of romaine lettuce with croutons and Caesar dressing.",
     "price": 10.49,
-    "image": "/images/chicken-caesar-salad.jpg",
+    "image": "https://i.ibb.co/Sx5fCQn/dessert-7.jpg",
     "nutritionalInfo": {
       "calories": 350,
       "protein": "25g",
@@ -89,7 +89,7 @@
     "items": ["lentils", "carrots", "celery", "onions", "spices"],
     "description": "A hearty lentil soup with carrots, celery, onions, and a blend of spices.",
     "price": 7.99,
-    "image": "/images/lentil-soup.jpg",
+    "image": "https://i.ibb.co/Y2QHZ2N/berger2.jpg",
     "nutritionalInfo": {
       "calories": 250,
       "protein": "15g",
@@ -101,9 +101,9 @@
     "id": 8,
     "name": "Shrimp Pad Thai",
     "items": ["shrimp", "rice noodles", "bean sprouts", "peanuts", "lime"],
-    "description": "A classic Thai dish with shrimp, rice noodles, bean sprouts, and a tangy sauce, topped with crushed peanuts.",
+    "description": "A classic Thai dish with shrimp, rice noodles, bean sprouts, and topped with crushed peanuts.",
     "price": 13.49,
-    "image": "/images/shrimp-pad-thai.jpg",
+    "image": "https://i.ibb.co/t35m9wD/pizza2.jpg",
     "nutritionalInfo": {
       "calories": 500,
       "protein": "25g",
@@ -117,7 +117,7 @@
     "items": ["falafel", "pita bread", "lettuce", "tomato", "tzatziki sauce"],
     "description": "Crispy falafel balls wrapped in pita bread with lettuce, tomato, and tzatziki sauce.",
     "price": 8.99,
-    "image": "/images/falafel-wrap.jpg",
+    "image": "https://i.ibb.co/pxBq93g/pizza9.jpg",
     "nutritionalInfo": {
       "calories": 350,
       "protein": "12g",
