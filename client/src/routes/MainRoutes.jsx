@@ -4,6 +4,9 @@ import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import AddMeal from "../pages/AddMeal";
+import DashboardLayout from "../layouts/DashboardLayout";
+import AcceptedMeal from "../pages/AcceptedMeal";
 
 const MainRoutes = createBrowserRouter([
   {
@@ -26,6 +29,20 @@ const MainRoutes = createBrowserRouter([
   {
     path:'/register',
     element: <Register/>
+},
+{
+  path: "",
+  element: <DashboardLayout/>,
+  children: [
+      {
+          path: 'addMeal',
+          element: <AddMeal/>
+      },
+      {
+          path: 'addMeal/acceptedMeal',
+          element: <AcceptedMeal/>
+      },
+  ],
 },
 
 ]);
