@@ -5,7 +5,7 @@ const DashboardLayout = () => {
   return (
     <div>
         <DashboardDrawer/>
-        <div className='ml-0 md:ml-[15rem]'>
+        <div className='ml-0 md:ml-[15rem] px-4 pb-4'>
         <Outlet/>
         </div>
     </div>

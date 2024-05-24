@@ -7,6 +7,7 @@ import Register from "../pages/Register";
 import AddMeal from "../pages/AddMeal";
 import DashboardLayout from "../layouts/DashboardLayout";
 import AcceptedMeal from "../pages/AcceptedMeal";
+import AddedMeals from "../pages/AddedMeals";
 
 const MainRoutes = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const MainRoutes = createBrowserRouter([
       {
           path: 'addMeal/acceptedMeal',
           element: <AcceptedMeal/>
+      },
+      {
+          path: 'addMeal/addedMeals',
+          element: <AddedMeals/>
       },
   ],
 },

@@ -1,8 +1,6 @@
 import React from "react";
 import FoodBankIcon from "@mui/icons-material/FoodBank";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { TbTransactionBitcoin } from "react-icons/tb";
-import {
+import AddCommentIcon from '@mui/icons-material/AddComment';import {
   Box,
   List,
   ListItem,
@@ -25,11 +23,11 @@ const dashboardPaths = [
     path: `/acceptedMeal`,
     icon: RestaurantMenuIcon,
   },
-  // {
-  //   title: "Calendar",
-  //   path: `/calendar`,
-  //   icon: CalendarMonthIcon,
-  // },
+  {
+    title: "Added Meals",
+    path: `/addedMeals`,
+    icon: AddCommentIcon,
+  },
 ];
 const DrawerSidebar = ({ handleDrawerClose }) => {
   const location = useLocation();
