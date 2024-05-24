@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form"
 import TextField from '@mui/material/TextField';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
@@ -45,21 +44,30 @@ const AddMeal = () => {
   return (
     <div className="mt-4 md:mt-0">
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <TextField
+      <div className="flex flex-col md:flex-row gap-4">
+     <div className="flex flex-col w-full">
+     <TextField
       {...register("name", { required: true })}
           id="outlined-name-input"
           label="Meal Name"
           type="text"
         /> 
-         {errors.name && <span className="text-red-500">*Name is required</span>}
-         <TextField
+         {errors.name && <p className="text-red-500">*Name is required</p>}
+     </div>
+     <div className="flex flex-col w-full">
+     <TextField
       {...register("image", { required: true })}
           id="outlined-image-input"
           label="Image URL"
           type="text"
         /> 
-         {errors.image && <span className="text-red-500">*Image is required</span>}
-         <InputLabel id="demo-multiple-checkbox-label">Menu Items</InputLabel>
+         {errors.image && <p className="text-red-500">*Image is required</p>}
+     </div>
+      </div>
+
+
+      <div className="flex flex-col md:flex-row gap-4">
+<div className="flex flex-col w-full">
         <Select
           {...register("items", { required: true })}
           labelId="demo-multiple-checkbox-label"
@@ -82,42 +90,64 @@ const AddMeal = () => {
           ))}
         </Select>
         {errors.items && <span className="text-red-500">*Items is required</span>}
-      <TextField
+     </div>
+
+     <div className="flex flex-col w-full">
+    <TextField
       {...register("price", { required: true })}
           id="outlined-price-input"
           label="Price"
           type="number"
         /> 
          {errors.price && <span className="text-red-500">*Price is required</span>}
-         <TextField
+    </div>
+</div>
+
+
+
+<div className="flex flex-col md:flex-row gap-4">
+<div className="flex flex-col w-full">
+<TextField
       {...register("calories", { required: true })}
           id="outlined-calories-input"
           label="Calories"
           type="number"
         /> 
          {errors.calories && <span className="text-red-500">*This field is required</span>}
+</div>
 
-         <TextField
+<div className="flex flex-col w-full">
+<TextField
       {...register("protein", { required: true })}
           id="outlined-protein-input"
           label="Protein Quantity"
           type="number"
         /> 
          {errors.protein && <span className="text-red-500">*This field is required</span>}
-         <TextField
+</div>
+</div>
+
+
+<div className="flex flex-col md:flex-row gap-4">
+<div className="flex flex-col w-full">
+<TextField
       {...register("fats", { required: true })}
           id="outlined-fats-input"
           label="Fats Quantity"
           type="number"
         /> 
          {errors.fats && <span className="text-red-500">*This field is required</span>}
-         <TextField
+</div>
+<div className="flex flex-col w-full">
+<TextField
       {...register("carbs", { required: true })}
           id="outlined-carbs-input"
           label="Carbs Quantity"
           type="number"
         /> 
          {errors.carbs && <span className="text-red-500">*This field is required</span>}
+</div>
+</div>
          
       <TextField
       {...register("description", { required: true })}
@@ -132,7 +162,7 @@ const AddMeal = () => {
          {errors.description && <span className="text-red-500">*Description is required</span>}
       <input
       className=" py-2 px-4 w-full rounded text-white font-bold text-lg bg-gray-500 hover:bg-gray-600 my-3 cursor-pointer"
-      value="Add Meal"
+      value="Add The Meal"
        type="submit" />
     </form> 
     </div>
