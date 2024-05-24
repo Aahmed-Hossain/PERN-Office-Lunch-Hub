@@ -11,11 +11,11 @@ const Login = () => {
       const onSubmit = (data) => console.log(data)
 
   return (
-  <div className="px-24 my-6">
+  <div className="lg:px-24 md:px-12 px-4 my-6">
 
-      <div className="py-12 px-20 flex flex-col bg-gray-100 shadow-lg hover:shadow-xl rounded-md border border-gray-400">
+      <div className="py-12 px-4 md:py-6 lg:px-20 md:px-8 flex flex-col bg-gray-100 shadow-lg hover:shadow-xl rounded-md border border-gray-400 ">
       <h1 className="text-center font-extrabold text-4xl">Login Please....</h1>
-     <div className="flex items-center justify-around">
+     <div className="flex flex-col md:flex-row items-center justify-around">
 
          {/* logo Image */}
       <div className=" w-full">
@@ -23,7 +23,7 @@ const Login = () => {
         
       </div>
       {/* login form  */}
-      <div className="px-2  w-full">
+      <div className="px-2 w-full">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <TextField
       {...register("email", { required: true })}
