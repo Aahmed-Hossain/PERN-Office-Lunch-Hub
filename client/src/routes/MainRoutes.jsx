@@ -15,40 +15,37 @@ const MainRoutes = createBrowserRouter([
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
-        {
-            path: '/',
-            element: <Home/>
-        },
-      
-
+      {
+        path: "/",
+        element: <Home />,
+      },
     ],
   },
   {
-    path:'/login',
-    element: <Login/>
-},
+    path: "/login",
+    element: <Login />,
+  },
   {
-    path:'/register',
-    element: <Register/>
-},
-{
-  path: "",
-  element: <DashboardLayout/>,
-  children: [
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "",
+    element: <DashboardLayout />,
+    children: [
       {
-          path: 'addMeal',
-          element: <AddMeal/>
+        path: "addMeal",
+        element: <AddMeal />,
       },
       {
-          path: 'addMeal/acceptedMeal',
-          element: <AcceptedMeal/>
+        path: "addMeal/acceptedMeal",
+        element: <AcceptedMeal />,
       },
       {
-          path: 'addMeal/addedMeals',
-          element: <AddedMeals/>
+        path: "addMeal/addedMeals",
+        element: <AddedMeals />,
       },
-  ],
-},
-
+    ],
+  },
 ]);
 export default MainRoutes;
