@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import FoodBankIcon from "@mui/icons-material/FoodBank";
 import AddCommentIcon from '@mui/icons-material/AddComment';import {
   Box,
