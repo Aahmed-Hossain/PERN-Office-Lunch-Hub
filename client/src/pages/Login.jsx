@@ -1,14 +1,49 @@
 import logo from "../assets/images/lunch-hub.png";
 import { useForm } from "react-hook-form"
 import TextField from '@mui/material/TextField';
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAxios } from "../hooks/useAxios";
+import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth.";
+
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { setUser } = useAuth();
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
       } = useForm()
-      const onSubmit = (data) => console.log(data)
+      const onSubmit = (data) => {
+        console.log("user:",data);
+        const user = {
+          email: data.email,
+          password: data.password,
+  
+        };
+        console.log(user);
+        useAxios
+          .post("/auth/login", user)
+          .then((res) => {
+            localStorage.setItem("token", res.data.token);
+            console.log("user data and token:",res.data);
+            setUser(res.data.userInfo);
+            reset();
+            toast.success("You Loggedin successful");
+            navigate(location?.state ? location.state : "/");
+          })
+          .catch((err) => {
+            console.error("Errors:", err);
+            if (err.response) {
+              toast.error(`${err.response.status}: ${err.response.data}`);
+              // console.error("Error data:", err.response.data);
+              // console.error("Error status:", err.response.status);
+              // console.error("Error headers:", err.response.headers);
+            }
+          });
+      };
 
   return (
   <div className="lg:px-24 md:px-12 px-4 my-6">

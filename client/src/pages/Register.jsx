@@ -20,7 +20,7 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    // console.log("user datas:,",data);
+    console.log("user data and token:",data);
     const user = {
       name: data.name,
       email: data.email,
@@ -31,6 +31,7 @@ const Register = () => {
     useAxios
       .post("/auth/register", user)
       .then((res) => {
+        localStorage.setItem("token", res.data.token);
         setUser(res.data.userInfo);
         reset();
         toast.success("Registration successful");
