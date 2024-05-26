@@ -5,25 +5,34 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAxios } from "../hooks/useAxios";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth.";
+import { useState } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { setUser } = useAuth();
+  const [autoFill, setAutoFill] = useState({email: '', password: ''});
+console.log("from upper", autoFill);
     const {
         register,
         handleSubmit,
         reset,
+        setValue,
         formState: { errors },
-      } = useForm()
+      } = useForm({
+        defaultValues: {
+          email: autoFill.email,
+          password:autoFill.password
+        },
+      })
       const onSubmit = (data) => {
-        console.log("user:",data);
+        // console.log("user:",data);
         const user = {
           email: data.email,
           password: data.password,
   
         };
-        console.log(user);
+        // console.log(user);
         useAxios
           .post("/auth/login", user)
           .then((res) => {
@@ -44,7 +53,15 @@ const Login = () => {
             }
           });
       };
-
+      const handleAutoFill = (email, password)=> {
+        setAutoFill(email,password)
+        setValue('email', email);
+        setValue('password', password);
+        setValue(email);
+        setValue(password); 
+        
+        // console.log(email, password);
+      }
   return (
   <div className="lg:px-24 md:px-12 px-4 my-6">
 
@@ -65,6 +82,7 @@ const Login = () => {
           id="outlined-email-input"
           label="Email"
           type="email"
+
         /> 
          {errors.email && <span className="text-red-500">*Email is required</span>}
       <TextField
@@ -72,6 +90,7 @@ const Login = () => {
           id="outlined-password-input"
           label="Password"
           type="password"
+          defaultValue={autoFill.password}
         /> 
          {errors.password && <span className="text-red-500">*Password is required</span>}
       <input
@@ -79,6 +98,9 @@ const Login = () => {
       value="Login"
        type="submit" />
     </form>
+    <button onClick={()=> handleAutoFill('ahmed.hsn.404@gmail.com','ahmed404')} className=" py-2 px-4 w-full rounded text-white font-bold text-lg bg-slate-500 hover:bg-gray-600 my-3 cursor-pointer">
+Login as Admin
+    </button>
     <p className="text-lg font-semibold">New to this Site? <Link  to={'/register'} className="hover:underline text-blue-500">Register</Link> please</p>
       </div>
       

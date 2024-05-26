@@ -7,7 +7,7 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 const MealCard = ({ meal }) => {
   const { name, description, image } = meal;
   return (
-    <Card sx={{ maxWidth: 400 }}>
+    <Card sx={{ maxWidth: 800 }}>
       <CardActionArea className="group">
         <CardMedia
           className="transition-transform transform group-hover:scale-105"
