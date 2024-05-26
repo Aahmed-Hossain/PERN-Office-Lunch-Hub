@@ -60,16 +60,6 @@ res.json('Your Meal Deleted Successfully');
 
 
 
-
-
-
-
-
-
-
-
-
-
 app.get('/', (req, res) => {
     res.send(`Server Running on port: ${port}`)
 });
