@@ -10,7 +10,8 @@ app.use(cors());
 app.use(express.json())
 
 // ROUTES
-
+// register and login
+app.use('/auth', require('./jwtAuth'));
 // create a lunch menu/meal;;
 app.post("/meals", async(req, res)=> {
     try {
