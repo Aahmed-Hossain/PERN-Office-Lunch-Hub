@@ -9,19 +9,20 @@ import AddCommentIcon from '@mui/icons-material/AddComment';import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Link,useLocation, useNavigate } from "react-router-dom";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import LogoutIcon from "@mui/icons-material/Logout";
-const dashboardPaths = [
+import useAuth from "../../hooks/useAuth.";
+const adminDashboardPaths  = [
   {
     title: "Add Meal",
     path: ``,
     icon: FoodBankIcon,
   },
   {
-    title: "Accepted Meal",
-    path: `/acceptedMeal`,
+    title: "Selected Meal",
+    path: `/selectedMeal`,
     icon: RestaurantMenuIcon,
   },
   {
@@ -30,10 +31,27 @@ const dashboardPaths = [
     icon: AddCommentIcon,
   },
 ];
+
+const userDashboardPaths = [
+  {
+    title: "My Meals",
+    path: `/mySelectedMeals`,
+    icon: AddCommentIcon,
+  },
+];
+
 const DrawerSidebar = ({ handleDrawerClose }) => {
+  const navigate = useNavigate();
   const location = useLocation();
   const pathName = location.pathname;
+  const {user, logoutUser} =  useAuth();
+  const userRole = user?.role;
+  const dashboardPaths = userRole === "admin" ? adminDashboardPaths : userDashboardPaths;
 
+  const handleLogout = async () => {
+    await logoutUser();
+    navigate('/login');
+  };
   return (
     <Box className="flex flex-col justify-between">
       <List>
@@ -69,7 +87,7 @@ const DrawerSidebar = ({ handleDrawerClose }) => {
           <span className="pl-2">Home</span>
         </Link>
 
-        <button className="flex items-center text-blue-500 ">
+        <button onClick={handleLogout} className="flex items-center text-blue-500 ">
           <LogoutIcon /> <span className="pl-2">Logout</span>
         </button>
       </List>

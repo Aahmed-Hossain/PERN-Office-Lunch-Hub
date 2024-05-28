@@ -6,8 +6,10 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddMeal from "../pages/AddMeal";
 import DashboardLayout from "../layouts/DashboardLayout";
-import AcceptedMeal from "../pages/AcceptedMeal";
 import AddedMeals from "../pages/AddedMeals";
+import MealDetails from "../components/mealDetails/MealDetails";
+import SelectedMeal from "../pages/SelectedMeal";
+import MySelectedMeals from "../pages/MySelectedMeals";
 
 const MainRoutes = createBrowserRouter([
   {
@@ -19,6 +21,11 @@ const MainRoutes = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: 'mealDetails/:id',
+        element: <MealDetails/>,
+        loader: ({params})=>fetch(`http://localhost:3001/meals/${params.id}`)
+      }
     ],
   },
   {
@@ -38,12 +45,16 @@ const MainRoutes = createBrowserRouter([
         element: <AddMeal />,
       },
       {
-        path: "addMeal/acceptedMeal",
-        element: <AcceptedMeal />,
+        path: "addMeal/selectedMeal",
+        element: <SelectedMeal />,
       },
       {
         path: "addMeal/addedMeals",
         element: <AddedMeals />,
+      },
+      {
+        path: "addMeal/mySelectedMeals",
+        element: <MySelectedMeals />,
       },
     ],
   },
