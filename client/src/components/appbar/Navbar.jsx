@@ -1,32 +1,66 @@
-import { Link, useNavigate } from 'react-router-dom'
-import MenuDropdown from './MenuDropdown'
-import useAuth from '../../hooks/useAuth.'
-
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth.";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 const Navbar = () => {
   const navigate = useNavigate();
-  const {user, logoutUser} =  useAuth();
-  console.log("user from navbar",user)
+  const { user, logoutUser } = useAuth();
   const handleLogout = async () => {
     await logoutUser();
-    navigate('/login');
+    navigate("/login");
   };
   return (
-    <div className=' flex justify-between w-full mx-auto py-2 bg-white px-8 border-b'>
-          
-            {/* Logo */}
-            <Link to='/'>
-               <h1 className='text-2xl font-extrabold'>Lunch<span className='text-blue-400'>Hub</span></h1>
-            </Link>
-            <button
-          className='bg-fuchsia-200 hover:bg-fuchsia-300 cursor-pointer px-2 py-1 rounded-md hover:shadow-md'
-           onClick={handleLogout}>
-            Logout
-          </button>
-            {/* Dropdown Menu */}
-            <MenuDropdown />
-          </div>
-  
-  )
-}
+    <div className=" flex justify-between w-full mx-auto py-2 bg-white px-2 md:px-8 border-b">
+      {/* Logo */}
+      <Link to="/">
+        <h1 className="text-normal md:text-2xl font-bold md:font-extrabold">
+          Lunch<span className="text-blue-400">Hub</span>
+        </h1>
+      </Link>
 
-export default Navbar
+      <div className="flex items-center gap-2">
+        {
+          user ? 
+          <>
+  <Button onClick={handleLogout} variant="contained" size="small">
+          <LogoutIcon/>Logout
+        </Button>
+      {
+        user.email === 'admin' ? 
+          <Link to={'/addMeal'}>
+          <Button variant="contained" size="small">
+            <DashboardCustomizeIcon/>
+            Dashboard
+          </Button>
+          </Link>
+ : 
+          <Link to={'/addMeal/mySelectedMeals'}>
+          <Button variant="contained" size="small">
+            <DashboardCustomizeIcon/>
+            Dashboard
+          </Button>
+          </Link>
+
+      } 
+
+        <Avatar alt="Logged in user" src={user?.image} />
+          </>
+          :
+          <>
+             <Link to={'/login'}>
+        <Button variant="contained" size="small">
+          <LoginIcon/>
+          Login
+        </Button>
+        </Link>
+          </>
+        }
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

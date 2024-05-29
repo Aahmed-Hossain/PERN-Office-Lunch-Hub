@@ -35,7 +35,7 @@ const Register = () => {
         setUser(res.data.userInfo);
         reset();
         toast.success("Registration successful");
-        navigate(location?.state ? location.state : "/");
+        navigate(location.state?.from || "/");
       })
       .catch((err) => {
         console.error("Errors:", err);

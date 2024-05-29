@@ -41,7 +41,7 @@ console.log("from upper", autoFill);
             setUser(res.data.userInfo);
             reset();
             toast.success("You Loggedin successful");
-            navigate(location?.state ? location.state : "/");
+            navigate(location.state?.from || "/");
           })
           .catch((err) => {
             console.error("Errors:", err);

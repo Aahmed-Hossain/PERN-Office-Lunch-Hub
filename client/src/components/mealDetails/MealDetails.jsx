@@ -8,13 +8,15 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import useAuth from './../../hooks/useAuth.';
 import { useAxios } from "../../hooks/useAxios";
 import { toast } from "react-toastify";
 
 const MealDetails = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location)
   const {user} = useAuth();
   const email = user?.email;
   console.log(email);
@@ -31,8 +33,41 @@ const MealDetails = () => {
     image,
     price,
   } = meal;
-
+  const confirmLogin = () => {
+    toast.warn(
+      <div>
+        <p>Do you want to login first?</p>
+        <div className="flex gap-4">
+          <button
+            className="bg-green-300 px-3 my-2 rounded-md"
+            onClick={() => {
+              toast.dismiss();
+              navigate('/login', { state: { from: location.pathname } });
+            }}
+          >
+            Yes
+          </button>
+          <button
+            className="bg-red-300 px-3 my-2 rounded-md"
+            onClick={() => toast.dismiss()}
+          >
+            No
+          </button>
+        </div>
+      </div>,
+      {
+        position: "top-center",
+        autoClose: false,
+        closeOnClick: true,
+        closeButton: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      }
+    );
+  };
   const handleSelectedMeal = () => {
+  
     const selectedMeal = {
       email, 
       date: new Date(), 
@@ -40,21 +75,27 @@ const MealDetails = () => {
       image,
       price,
     }
-    useAxios.post("/selectedMeals", selectedMeal)
-          .then((res) => {
-            console.log("selectedMeal:",res.data);
-            toast.success(`You selected the meal: ${name}`);
-            navigate("/");
-          })
-          .catch((err) => {
-            console.error("Errors:", err);
-            if (err.response) {
-              toast.error(`${err.response.status}: ${err.response.data}`);
-              // console.error("Error data:", err.response.data);
-              // console.error("Error status:", err.response.status);
-              // console.error("Error headers:", err.response.headers);
-            }
-          });
+    if(!email){
+      confirmLogin();
+    }else{
+      useAxios.post("/selectedMeals", selectedMeal)
+      .then((res) => {
+        console.log("selectedMeal:",res.data);
+        toast.success(`You selected the meal: ${name}`);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.error("Errors:", err);
+        if (err.response) {
+          toast.error(`${err.response.status}: ${err.response.data}`);
+          // console.error("Error data:", err.response.data);
+          // console.error("Error status:", err.response.status);
+          // console.error("Error headers:", err.response.headers);
+        }
+      });
+    }
+    
+   
   }
 
   return (
