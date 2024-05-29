@@ -2,7 +2,7 @@ import AddedMealCard from "../components/cards/AddedMealCard";
 import useMeals from "../hooks/useMeals";
 
 const AddedMeals = () => {
-  const [meals, , refetch] = useMeals();
+  const [, meals, , refetch] = useMeals();
 
 
   return (
