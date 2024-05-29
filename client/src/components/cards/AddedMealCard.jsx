@@ -4,11 +4,11 @@ import { toast } from "react-toastify";
 import { useAxios } from "../../hooks/useAxios";
 
 
-const SelectedMealCard = ({selectedMeal,refetch}) => {
-    const {selectedmeals_id, name, email, date, image, price} = selectedMeal;
+const AddedMealCard = ({meal,refetch}) => {
+    const {meal_id, name,  image, price} = meal;
 
 const handleDelete = (id) => {
-    useAxios.delete(`/selectedMeals/${id}`)
+    useAxios.delete(`/meals/${id}`)
       .then(response => {
         toast.success(`${response.data} `)
         refetch();
@@ -69,13 +69,14 @@ const handleDelete = (id) => {
               {name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {email}
+              {/* {email} */}
             </Typography>
             <Typography gutterBottom variant="h6" component="div">
               Price: {price} $
             </Typography>
             <Typography gutterBottom variant="h6" component="div">
-              Date: {date.slice(0,10)}
+              Date:
+               {/* {date.slice(0,10)} */}
             </Typography>
 
             <CardActions
@@ -85,7 +86,9 @@ const handleDelete = (id) => {
                 marginY: "10px",
               }}
             >
-              <Button onClick={()=>confirmDelete(selectedmeals_id)} variant="contained" color="primary">
+              <Button 
+              onClick={()=>confirmDelete(meal_id)}
+               variant="contained" color="primary">
                 delete
               </Button>
             </CardActions>
@@ -95,4 +98,4 @@ const handleDelete = (id) => {
   )
 }
 
-export default SelectedMealCard
+export default AddedMealCard
