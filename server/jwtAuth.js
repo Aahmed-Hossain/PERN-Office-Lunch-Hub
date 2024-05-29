@@ -61,7 +61,7 @@ router.get('/authorization',jwtAuthorization, async(req,res)=> {
         console.error(err.message)
         
     }
-})
+});
 
 
 

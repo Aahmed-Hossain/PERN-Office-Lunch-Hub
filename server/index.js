@@ -15,10 +15,10 @@ app.use('/auth', require('./jwtAuth'));
 // create a lunch menu/meal;;
 app.post("/meals", async(req, res)=> {
     try {
-        const { name, items, description, price, image, calories, protein, fats, carbs } = req.body;
-        const values = [name, items, description, price, image, calories, protein, fats, carbs];
-        const columns = "name, items, description, price, image, calories, protein, fats, carbs";
-        const placeholders = "$1, $2, $3, $4, $5, $6, $7, $8, $9";
+        const { name, items, description, price, image, calories, protein, fats, carbs,date } = req.body;
+        const values = [name, items, description, price, image, calories, protein, fats, carbs,date];
+        const columns = "name, items, description, price, image, calories, protein, fats, carbs, date";
+        const placeholders = "$1, $2, $3, $4, $5, $6, $7, $8, $9, $10";
         const query = `INSERT INTO meal (${columns}) VALUES(${placeholders}) RETURNING *`;
         const newMeal = await pool.query(query,  values
         )

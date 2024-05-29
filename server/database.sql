@@ -1,17 +1,7 @@
 CREATE DATABASE lunchHub;
 
-CREATE TABLE meal(
-    meal_id SERIAL PRIMARY KEY,
-    name VARCHAR(50),
-    items TEXT[],
-    description VARCHAR(700),
-    price VARCHAR(20),
-    image VARCHAR(500),
-    calories VARCHAR(10),
-    protein  VARCHAR(10),
-    fats  VARCHAR(10),
-    carbs  VARCHAR(10)
-);
+
+
 
 CREATE TABLE users(
     user_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
