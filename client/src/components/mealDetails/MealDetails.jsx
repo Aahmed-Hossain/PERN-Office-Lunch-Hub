@@ -2,10 +2,10 @@ import {
   Box,
   Button,
   Card,
-  CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
+  Grid,
   Typography,
 } from "@mui/material";
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
@@ -20,6 +20,7 @@ const MealDetails = () => {
   const email = (user?.user_email || user?.email);
   const meal = useLoaderData();
   const {
+    date,
     carbs,
     fats,
     protein,
@@ -95,47 +96,55 @@ const MealDetails = () => {
   return (
     <div className="px-4 md:px-8 mx-auto my-6">
 
-        <Card className="flex flex-col md:flex-col lg:flex-row h-full">
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image={image}
-              alt="meal image"
-            />
-          </CardActionArea>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {description}
-            </Typography>
-            <Typography gutterBottom variant="h6" component="div">
-              Price: {price} $
-            </Typography>
-            <Typography gutterBottom variant="h6" component="div">
-              Carbs: {carbs} | Fats: {fats}
-            </Typography>
-            <Typography gutterBottom variant="h6" component="div">
-              Protein: {protein} | Calories: {calories}
-            </Typography>
-   <Box display="flex" flexWrap="wrap" gap={2}>
-      {items.map((item, idx) => (
-        <Box 
-          key={idx} 
-          border={1} 
-          borderColor="green" 
-          px={2}
-        >
-          <Typography>{item.toUpperCase()}</Typography>
-        </Box>
-      ))}
-    </Box>
-
+<Card sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, marginBottom: 2 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <CardMedia
+            component="img"
+            sx={{ height: '100%', objectFit: 'cover' }}
+            image={image}
+            alt={name}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+            <CardContent sx={{ flex: '1 0 auto' }}>
+              <Typography component="div" variant="h5">
+                {name}
+              </Typography>
+              <Typography variant="subtitle1" color="text.secondary" component="div">
+                {description}
+              </Typography>
+              <Typography gutterBottom variant="h6" component="div" color="text.secondary">
+                Price: {price} $
+              </Typography>
+              <Typography gutterBottom variant="h6" component="div" color="text.secondary">
+                Carbs: {carbs} | Fats: {fats}
+              </Typography>
+              <Typography gutterBottom variant="h6" component="div" color="text.secondary">
+                Protein: {protein} | Calories: {calories}
+              </Typography>
+              <Typography component="div" variant="h5">
+                Date: {date}
+              </Typography>
+              <Box display="flex" flexWrap="wrap" gap={2} marginTop={2}>
+                {items.map((item, idx) => (
+                  <Box 
+                    key={idx} 
+                    border={1} 
+                    borderColor="green" 
+                    px={2}
+                    py={0.5}
+                    borderRadius={2}
+                  >
+                    <Typography>{item.toUpperCase()}</Typography>
+                  </Box>
+                ))}
+              </Box>
+            </CardContent>
             <CardActions
               sx={{
-                direction: "flex",
+                display: "flex",
                 justifyContent: "center",
                 marginY: "10px",
               }}
@@ -144,8 +153,10 @@ const MealDetails = () => {
                 Select for Lunch
               </Button>
             </CardActions>
-          </CardContent>
-        </Card>
+          </Box>
+        </Grid>
+      </Grid>
+    </Card>
     </div>
   );
 };
