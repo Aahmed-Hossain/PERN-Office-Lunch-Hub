@@ -1,15 +1,15 @@
 import SelectedMealCard from "../components/cards/SelectedMealCard";
-import useSelectedMeal from "../hooks/useSelectedMeal"
+import useAllSelectedMeal from "../hooks/useAllSelectedMeal";
 
 const SelectedMeal = () => {
-  const [selectedMeals, refetch] = useSelectedMeal();
+  const [selectedMeals, refetch] = useAllSelectedMeal();
 
 
   return (
     <div className="flex flex-col gap-4">
       {
-        selectedMeals?.map((selectedMeal)=> (
-<SelectedMealCard key={selectedMeal.id} selectedMeal={selectedMeal} refetch={refetch}/>
+        selectedMeals?.map((selectedMeal,idx)=> (
+<SelectedMealCard key={idx} selectedMeal={selectedMeal} refetch={refetch}/>
         ))
       }
     </div>

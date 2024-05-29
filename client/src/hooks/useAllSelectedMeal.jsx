@@ -1,15 +1,16 @@
 import { useQuery } from "@tanstack/react-query"
 import { useAxios } from "./useAxios"
 
-const useSelectedMeal = () => {
+const useAllSelectedMeal = () => {
+
     const {data:selectedMeals=[],refetch,}= useQuery({
-        queryKey: ['selectedMeals'],
+        queryKey: ['allSelectedMeals'],
         queryFn: async()=>{
-            const res = await useAxios.get('/selectedMeals')
+            const res = await useAxios.get(`/selectedMeals`)
             return res.data;
         }
     })
   return [selectedMeals, refetch]
 }
 
-export default useSelectedMeal;
+export default useAllSelectedMeal;

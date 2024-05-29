@@ -29,7 +29,7 @@ const Navbar = () => {
           <LogoutIcon/>Logout
         </Button>
       {
-        user.email === 'admin' ? 
+        user.role === 'admin' ? 
           <Link to={'/addMeal'}>
           <Button variant="contained" size="small">
             <DashboardCustomizeIcon/>

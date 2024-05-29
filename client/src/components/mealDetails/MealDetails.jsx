@@ -87,7 +87,7 @@ const MealDetails = () => {
       .catch((err) => {
         console.error("Errors:", err);
         if (err.response) {
-          toast.error(`${err.response.status}: ${err.response.data}`);
+          toast.error(`${err.response.status}: ${err.response.data.message}`);
           // console.error("Error data:", err.response.data);
           // console.error("Error status:", err.response.status);
           // console.error("Error headers:", err.response.headers);

@@ -12,7 +12,6 @@ const Login = () => {
   const location = useLocation();
   const { setUser } = useAuth();
   const [autoFill, setAutoFill] = useState({email: '', password: ''});
-console.log("from upper", autoFill);
     const {
         register,
         handleSubmit,
@@ -37,7 +36,7 @@ console.log("from upper", autoFill);
           .post("/auth/login", user)
           .then((res) => {
             localStorage.setItem("token", res.data.token);
-            console.log("user data and token:",res.data);
+            // console.log("user data and token:",res.data);
             setUser(res.data.userInfo);
             reset();
             toast.success("You Loggedin successful");

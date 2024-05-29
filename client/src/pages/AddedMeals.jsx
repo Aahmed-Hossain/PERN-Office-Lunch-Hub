@@ -8,8 +8,8 @@ const AddedMeals = () => {
   return (
     <div className="flex flex-col gap-4">
       {
-        meals?.map((meal)=> ( 
-<AddedMealCard key={meal.id} meal={meal} refetch={refetch}/>
+        meals?.map((meal,idx)=> ( 
+<AddedMealCard key={idx} meal={meal} refetch={refetch}/>
         ))
       }
     </div>
