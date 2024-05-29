@@ -27,6 +27,7 @@ DROP TABLE table_name
 INSERT INTO users (user_name, user_email, user_img,user_role, user_password) VALUES ('ahmed', 'ahmed@gmail.com', 'https://ahmed.png', 'ahmed123');
 
 CREATE TABLE selectedMeals (
+  selectedMeals_id SERIAL PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   email VARCHAR(255) NOT NULL,
   price VARCHAR(20) NOT NULL,

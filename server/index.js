@@ -74,6 +74,22 @@ app.post("/selectedMeals", async(req, res)=> {
         res.status(500).send('Error creating lunch menu/meal')
     }
 });
+// get the selected meal;
+app.get('/selectedMeals', async(req, res)=> {
+    try {
+        const selectedMeals = await pool.query("SELECT * FROM selectedmeals");
+        res.json(selectedMeals.rows)
+    } catch (err) {
+        console.error(err.message)
+    }
+});
+
+// delete a selectedMeal;
+app.delete('/selectedMeals/:id', async(req,res)=> {
+    const {id} = req.params;
+    const deletedMeal = await pool.query('DELETE FROM selectedmeals WHERE selectedmeals_id=$1',[id]);
+    res.json('The Meal Deleted Successfully');
+    });
 
 
 

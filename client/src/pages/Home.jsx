@@ -1,4 +1,4 @@
-import MealCard from "../components/mealCard/MealCard";
+import MealCard from "../components/cards/MealCard";
 import useMeals from "../hooks/useMeals";
 
 

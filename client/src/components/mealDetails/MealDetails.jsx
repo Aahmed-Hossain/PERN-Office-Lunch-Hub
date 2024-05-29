@@ -70,7 +70,7 @@ const MealDetails = () => {
   
     const selectedMeal = {
       email, 
-      date: new Date(), 
+      date: new Date().toISOString().split('T')[0],  
       name,
       image,
       price,
