@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { toast } from 'react-toastify';
 import { useAxios } from "../hooks/useAxios";
 
@@ -40,20 +40,12 @@ const AuthProvider = ({ children }) => {
     };
 
 
-//    const logoutUser = () => {
-//         setLoading(true)
-//         setUser(null);
-//         localStorage.removeItem('token');
-//         toast.success(`You Logged out successfully!`)
-//       }; 
-
-      
-    const authInfo = {
+    const authInfo = useMemo(() => ({
         user,
         loading,
         setUser,
         logoutUser
-    }
+    }), [user, loading]);
 
     return (
         <AuthContext.Provider value={authInfo}>

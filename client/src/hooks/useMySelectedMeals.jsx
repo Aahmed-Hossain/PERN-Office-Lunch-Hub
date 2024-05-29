@@ -4,10 +4,12 @@ import useAuth from './useAuth.';
 
 const useMySelectedMeals = () => {
 const {user} = useAuth();
+const email = (user?.user_email || user?.email);
+
     const {data:mySelectedMeals=[],refetch,}= useQuery({
         queryKey: ['mySelectedMeals'],
         queryFn: async()=>{
-            const res = await useAxios.get(`/selectedMeals/${user.email}`)
+            const res = await useAxios.get(`/selectedMeals/${email}`)
             return res.data;
         }
     })

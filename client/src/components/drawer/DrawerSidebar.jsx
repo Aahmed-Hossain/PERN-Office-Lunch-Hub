@@ -45,7 +45,7 @@ const DrawerSidebar = ({ handleDrawerClose }) => {
   const location = useLocation();
   const pathName = location.pathname;
   const {user, logoutUser} =  useAuth();
-  const userRole = user?.role;
+  const userRole = (user?.role || user?.user_role);
   const dashboardPaths = userRole === "admin" ? adminDashboardPaths : userDashboardPaths;
 
   const handleLogout = async () => {

@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,7 +9,10 @@ import { useState } from "react";
 import { Box } from "@mui/material";
 import { toast } from "react-toastify";
 import { useAxios } from "../hooks/useAxios";
-
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import moment from 'moment';
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -58,26 +61,27 @@ const names = [
 ];
 
 const AddMeal = () => {
-
   const [personName, setPersonName] = useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      typeof value === "string" ? value.split(",") : value
-    );
+    setPersonName(typeof value === "string" ? value.split(",") : value);
   };
 
   const {
     register,
+    control,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data)
+   
+    // const formattedDate = moment(data.date).format('YYYY-MM-DD');
+    // const formattedData = { ...data, date: formattedDate };
+    // console.log(formattedData)
     const meals = {
       name: data.name,
       description: data.description,
@@ -88,11 +92,14 @@ const AddMeal = () => {
       protein: data.protein,
       calories: data.calories,
       carbs: data.carbs,
+      date: moment(data.date).format('YYYY-MM-DD')
     };
+
+    
     useAxios
       .post("/meals", meals)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         toast.success(`${res.status}: Meal Added successfully`);
         reset();
       })
@@ -105,7 +112,7 @@ const AddMeal = () => {
           // console.error("Error headers:", err.response.headers);
         }
       });
-  }
+  };
   return (
     <div className="mt-4 md:mt-0">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -144,29 +151,27 @@ const AddMeal = () => {
           }}
         >
           <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
-            <Select
-              {...register("items", { required: true })}
-              labelId="demo-multiple-checkbox-label"
-              id="demo-multiple-checkbox"
-              placeholder="Select Menu Items"
-              multiple
-              value={personName}
-              onChange={handleChange}
-              input={<OutlinedInput label="Menu Items" />}
-              renderValue={(selected) => selected.join(", ")}
-              MenuProps={MenuProps}
-            >
-              {names.map((name) => (
-                <MenuItem key={name} value={name}>
-                  <Checkbox checked={personName.indexOf(name) > -1} />
-                  <ListItemText primary={name} />
-                </MenuItem>
-              ))}
-            </Select>
-            {errors.items && (
-              <span className="text-red-500">*Items is required</span>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <Controller
+                name="date"
+                control={control}
+                defaultValue={null}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <DatePicker
+                    {...field}
+                    label="Date"
+                    disablePast
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                )}
+              />
+            </LocalizationProvider>
+            {errors.date && (
+              <span className="text-red-500">*This field is required</span>
             )}
           </Box>
+
           <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
             <TextField
               {...register("price", { required: true })}
@@ -240,6 +245,34 @@ const AddMeal = () => {
               <span className="text-red-500">*This field is required</span>
             )}
           </Box>
+        </Box>
+
+
+
+
+        <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+          <Select
+            {...register("items", { required: true })}
+            labelId="demo-multiple-checkbox-label"
+            id="demo-multiple-checkbox"
+            placeholder="Select Menu Items"
+            multiple
+            value={personName}
+            onChange={handleChange}
+            input={<OutlinedInput label="Menu Items" />}
+            renderValue={(selected) => selected.join(", ")}
+            MenuProps={MenuProps}
+          >
+            {names.map((name) => (
+              <MenuItem key={name} value={name}>
+                <Checkbox checked={personName.indexOf(name) > -1} />
+                <ListItemText primary={name} />
+              </MenuItem>
+            ))}
+          </Select>
+          {errors.items && (
+            <span className="text-red-500">*Items is required</span>
+          )}
         </Box>
 
         <TextField

@@ -16,13 +16,10 @@ import { toast } from "react-toastify";
 const MealDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location)
   const {user} = useAuth();
-  const email = user?.email;
-  console.log(email);
+  const email = (user?.user_email || user?.email);
   const meal = useLoaderData();
   const {
-    // meal_id,
     carbs,
     fats,
     protein,
@@ -88,9 +85,6 @@ const MealDetails = () => {
         console.error("Errors:", err);
         if (err.response) {
           toast.error(`${err.response.status}: ${err.response.data.message}`);
-          // console.error("Error data:", err.response.data);
-          // console.error("Error status:", err.response.status);
-          // console.error("Error headers:", err.response.headers);
         }
       });
     }
@@ -100,7 +94,7 @@ const MealDetails = () => {
 
   return (
     <div className="px-4 md:px-8 mx-auto my-6">
-      <CardActionArea>
+
         <Card className="flex flex-col md:flex-col lg:flex-row h-full">
           <CardActionArea>
             <CardMedia
@@ -152,7 +146,6 @@ const MealDetails = () => {
             </CardActions>
           </CardContent>
         </Card>
-      </CardActionArea>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, logoutUser } = useAuth();
+  console.log(user)
   const handleLogout = async () => {
     await logoutUser();
     navigate("/login");
@@ -29,7 +30,7 @@ const Navbar = () => {
           <LogoutIcon/>Logout
         </Button>
       {
-        user.role === 'admin' ? 
+       (user.role || user.user_role) === 'admin' ? 
           <Link to={'/addMeal'}>
           <Button variant="contained" size="small">
             <DashboardCustomizeIcon/>
@@ -46,7 +47,7 @@ const Navbar = () => {
 
       } 
 
-        <Avatar alt="Logged in user" src={user?.image} />
+        <Avatar alt="Logged in user" src={user?.user_img || user?.image  } />
           </>
           :
           <>
