@@ -13,6 +13,9 @@ app.use(express.json())
 // register and login
 app.use('/auth', require('./jwtAuth'));
 // create a lunch menu/meal;;
+
+
+
 app.post("/meals", async(req, res)=> {
     try {
         const { name, items, description, price, image, calories, protein, fats, carbs,date } = req.body;
@@ -57,32 +60,81 @@ const deletedMeal = await pool.query('DELETE FROM meal WHERE meal_id=$1',[id]);
 res.json('Your Meal Deleted Successfully');
 });
 
+
+
 // post a selected meal;
-
-app.post("/selectedMeals", async(req, res)=> {
+app.post("/selectedMeals", async (req, res) => {
     try {
-        const { name, email, price, image, date } = req.body;
-        const checkQuery = `SELECT * FROM selectedmeals WHERE name = $1 AND email = $2 AND date = $3`;
-        const checkValues = [name, email, date];
-        const alreadySelectedMeal = await pool.query(checkQuery, checkValues);
-
-        if (alreadySelectedMeal.rows.length > 0) {
-            // User has already selected this meal
-            return res.status(400).json({ message: 'You have already selected this meal.' });
-        }
-        const values = [name, email, price, image, date];
-        const columns = "name, email, price, image, date";
-        const placeholders = "$1, $2, $3, $4, $5";
-        // const alreadySelectedMeal =
-        const query = `INSERT INTO selectedmeals (${columns}) VALUES(${placeholders}) RETURNING *`;
-        const selectedMeals = await pool.query(query,  values
-        )
-        res.json(selectedMeals.rows[0])
+      const { name, email, price, image, date } = req.body;
+      const checkQuery = `SELECT * FROM selectedmeals WHERE email = $1 AND date = $2`;
+      const checkValues = [email, date];
+      const alreadySelectedMeal = await pool.query(checkQuery, checkValues);
+  
+      if (alreadySelectedMeal.rows.length > 0) {
+        // User has already selected a meal for today
+        return res.status(400).json('You have already selected a meal for today.If you want to select another meal please delete the meal you have selected.');
+      }
+  
+      const values = [name, email, price, image, date];
+      const columns = "name, email, price, image, date";
+      const placeholders = "$1, $2, $3, $4, $5";
+      const query = `INSERT INTO selectedmeals (${columns}) VALUES(${placeholders}) RETURNING *`;
+      const selectedMeals = await pool.query(query, values);
+      res.json(selectedMeals.rows[0]);
     } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Error creating lunch menu/meal')
+      console.error(error.message);
+      res.status(500).send('Error creating lunch menu/meal');
     }
-});
+  });
+
+// get meal to select a meal a day;
+app.get("/selectedMeals/:email/:date", async (req, res) => {
+    try {
+      const { email, date } = req.params;
+      const checkQuery = `SELECT * FROM selectedmeals WHERE email = $1 AND date = $2`;
+      const checkValues = [email, date];
+      const alreadySelectedMeal = await pool.query(checkQuery, checkValues);
+  
+      res.json(alreadySelectedMeal.rows);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Error checking selected meals');
+    }
+  });
+
+// app.post("/selectedMeals", async(req, res)=> {
+//     try {
+//         const { name, email, price, image, date } = req.body;
+//         const checkQuery = `SELECT * FROM selectedmeals WHERE name = $1 AND email = $2 AND date = $3`;
+//         const checkValues = [name, email, date];
+//         const alreadySelectedMeal = await pool.query(checkQuery, checkValues);
+
+//         if (alreadySelectedMeal.rows.length > 0) {
+//             // User has already selected this meal
+//             return res.status(400).json({ message: 'You have already selected this meal.' });
+//         }
+//         const values = [name, email, price, image, date];
+//         const columns = "name, email, price, image, date";
+//         const placeholders = "$1, $2, $3, $4, $5";
+//         // const alreadySelectedMeal =
+//         const query = `INSERT INTO selectedmeals (${columns}) VALUES(${placeholders}) RETURNING *`;
+//         const selectedMeals = await pool.query(query,  values
+//         )
+//         res.json(selectedMeals.rows[0])
+//     } catch (error) {
+//         console.error(error.message);
+//         res.status(500).send('Error creating lunch menu/meal')
+//     }
+// });
+
+
+
+
+
+
+
+
+
 // get the selected meal;
 app.get('/selectedMeals/:email', async(req, res)=> {
     try {
