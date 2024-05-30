@@ -51,7 +51,7 @@ const Register = () => {
 
   return (
     <div className="lg:px-24 md:px-12 px-4 my-6">
-      <div className="py-12 px-4 md:py-6 lg:px-20 md:px-8 flex flex-col bg-gray-100 shadow-lg hover:shadow-xl rounded-md border border-gray-400 ">
+      <div className="py-12 px-4 md:py-6 lg:px-20 md:px-8 flex flex-col bg-gray-100 shadow-lg hover:shadow-xl rounded-md border border-gray-400 max-w-screen-xl mx-auto">
         <h1 className="text-center font-extrabold text-4xl mb-0 md:mb-4">
           Register Please....
         </h1>

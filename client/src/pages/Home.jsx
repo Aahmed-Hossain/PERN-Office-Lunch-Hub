@@ -29,11 +29,11 @@ const Home = () => {
       gutterBottom 
       sx={{ fontWeight: '', mb: 5 }}
     >
-      Hi, {isAdmin ? `Admin ${name?.toUpperCase()}` : `Welcome!! ${name?.toUpperCase()}`}
+      Hi, Welcome!!  {isAdmin ? `Admin ${name?.toUpperCase()}` :(user &&  `${name?.toUpperCase()}`)}
       <br />
       {isAdmin ? 'These menus only for Today' : 'Choose Today\'s Lunch Menu'}
     </Typography>
-    {todaysMeals?.length > 0 ? (
+    {(todaysMeals?.length > 0) ? (
       <Grid container spacing={4}>
         {todaysMeals?.map((meal) => (
           <Grid item xs={12} sm={6} md={4} key={meal.meal_id}>
