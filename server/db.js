@@ -10,10 +10,22 @@
 // module.exports = pool;
 
 
+
 const Pool = require('pg').Pool;
 
 const pool = new Pool({
-  connectionString: process.env.DB_URI
-});
+  connectionString: process.env.POSTGRES_URL,
+})
 
 module.exports = pool;
+
+
+
+
+// const Pool = require('pg').Pool;
+
+// const pool = new Pool({
+//   connectionString: process.env.DB_URI
+// });
+
+// module.exports = pool;
