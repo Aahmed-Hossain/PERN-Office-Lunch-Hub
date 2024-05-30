@@ -5,9 +5,13 @@ const pool = require('./db')
 require('dotenv').config();
 const port = process.env.PORT || 3001;
 
+
 // middleware
 app.use(cors());
 app.use(express.json())
+
+
+
 
 // ROUTES
 // register and login
@@ -167,6 +171,7 @@ app.delete('/selectedMeals/:id', async(req,res)=> {
 app.get('/', (req, res) => {
     res.send(`Server Running on port: ${port}`)
 });
+
 app.listen(port, ()=> {
     console.log(`Server Running on port:${port}`);
 })

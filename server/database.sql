@@ -1,6 +1,18 @@
 CREATE DATABASE lunchHub;
 
 
+CREATE TABLE meal(
+  meal_id SERIAL PRIMARY KEY,
+  name VARCHAR(800) NOT NULL,
+  items TEXT[],
+  description  VARCHAR(800) NOT NULL,
+  price VARCHAR(50) NOT NULL,
+  calories VARCHAR(50),
+  protein VARCHAR(50),
+  fats VARCHAR(50),
+  carbs VARCHAR(50),
+  date DATE NOT NULL
+)
 
 
 CREATE TABLE users(
@@ -11,10 +23,6 @@ CREATE TABLE users(
     user_role VARCHAR(255) NOT NULL,
     user_password VARCHAR(355) NOT NULL 
 );
----------delete a table 
-DROP TABLE table_name
----------inser fake data
-INSERT INTO users (user_name, user_email, user_img,user_role, user_password) VALUES ('ahmed', 'ahmed@gmail.com', 'https://ahmed.png', 'ahmed123');
 
 CREATE TABLE selectedMeals (
   selectedMeals_id SERIAL PRIMARY KEY,
