@@ -82,7 +82,7 @@ const MealDetails = () => {
       .then((res) => {
         console.log("selectedMeal:",res.data);
         toast.success(`You selected the meal: ${name}`);
-        navigate("/");
+        navigate("/addMeal/mySelectedMeals");
       })
       .catch((err) => {
         console.error("Errors:", err);
@@ -128,20 +128,24 @@ const MealDetails = () => {
               <Typography component="div" variant="h5">
                 Date: {date}
               </Typography>
-              <Box display="flex" flexWrap="wrap" gap={2} marginTop={2}>
+
+
+              <Box display="flex" flexWrap="wrap" gap={1} marginTop={2}>
                 {items.map((item, idx) => (
                   <Box 
                     key={idx} 
-                    border={1} 
+                    border={0.5} 
                     borderColor="green" 
-                    px={2}
-                    py={0.5}
-                    borderRadius={2}
+                    px={1}
+                    py={0}
+                    borderRadius={1}
                   >
                     <Typography>{item.toUpperCase()}</Typography>
                   </Box>
                 ))}
               </Box>
+
+
             </CardContent>
             <CardActions
               sx={{

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const MealCard = ({ meal }) => {
   const {meal_id, name, description, image } = meal;
   return (
-    <Card sx={{  maxWidth: 800 }}>
+    <Card sx={{ maxWidth: 800 }}>
       <CardActionArea className="group">
         <CardMedia
           className="transition-transform transform group-hover:scale-105"

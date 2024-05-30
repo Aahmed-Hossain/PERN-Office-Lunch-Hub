@@ -64,7 +64,7 @@ export default function DashboardDrawer({children}) {
           >
             <MenuIcon />
           </IconButton>
-          <Box className="font-extrabold text-4xl h-12 text-center mt-4"><Link to={'/'}>Lunch<span className='text-blue-400'>Hubbbbbbb</span></Link> </Box>
+          <Box className="font-extrabold text-4xl h-12 text-center mt-4"><Link to={'/'}>Lunch<span className='text-blue-400'>Hub</span></Link> </Box>
         </Toolbar>
       </AppBar>
       <Box

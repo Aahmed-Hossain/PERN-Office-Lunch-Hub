@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+import logo from '../../assets/images/site_logo.png'
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, logoutUser } = useAuth();
@@ -14,11 +15,16 @@ const Navbar = () => {
     navigate("/login");
   };
   return (
-    <div className=" flex justify-between w-full mx-auto py-2 bg-white px-2 md:px-8 border-b">
+    <div className=" flex justify-between w-full mx-auto py-2 bg-white px-2 md:px-8 border-b max-w-screen-2xl">
       {/* Logo */}
-      <Link to="/">
-        <h1 className="text-normal md:text-2xl font-bold md:font-extrabold">
-          Lunch<span className="text-blue-400">Hub</span>
+      <Link className="text-normal md:text-2xl font-bold md:font-extrabold flex items-center" to="/">
+      <img className="h-10 w-10 "
+        src={logo}
+        alt={'item.title'}
+      />
+        <h1 className="text-normal md:text-2xl font-bold md:font-extrabold hidden md:block" >
+       
+          Lunch<span className="text-[#1976D2]">Hub</span>
         </h1>
       </Link>
 
@@ -47,7 +53,7 @@ const Navbar = () => {
 
       } 
 
-        <Avatar alt="Logged in user" src={user?.user_img || user?.image  } />
+        <Avatar alt="Logged in user" src={user?.user_img || user?.image  } className="border border-slate-300" />
           </>
           :
           <>

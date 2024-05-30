@@ -62,7 +62,7 @@ const AddedMealCard = ({ meal, refetch }) => {
   };
   return (
     <div>
-      <Card className="flex flex-col md:flex-row lg:flex-row lg:h-[17rem] md:h-full">
+      <Card className="flex flex-col md:flex-row lg:flex-row lg:h-[20rem] md:h-full">
         <CardActionArea className="md:w-1/2 w-full">
           <CardMedia
             className="h-full"

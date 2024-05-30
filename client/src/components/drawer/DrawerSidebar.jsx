@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-
 import FoodBankIcon from "@mui/icons-material/FoodBank";
 import AddCommentIcon from '@mui/icons-material/AddComment';import {
   Box,
+  Button,
   List,
   ListItem,
   ListItemButton,
@@ -39,6 +39,7 @@ const userDashboardPaths = [
     icon: AddCommentIcon,
   },
 ];
+
 
 const DrawerSidebar = ({ handleDrawerClose }) => {
   const navigate = useNavigate();
@@ -80,17 +81,50 @@ const DrawerSidebar = ({ handleDrawerClose }) => {
           );
         })}
       </List>
-      <List sx={{ marginTop: "100%", marginX: "20px" }}>
-        <Link to={"/"} className="flex items-center text-blue-500 mb-3">
-          
-          <HomeWorkIcon />
-          <span className="pl-2">Home</span>
-        </Link>
 
-        <button onClick={handleLogout} className="flex items-center text-blue-500 ">
-          <LogoutIcon /> <span className="pl-2">Logout</span>
-        </button>
-      </List>
+<List sx={{ marginTop: "100%", marginX: "20px" }}>
+      <Link to={"/"} style={{ textDecoration: 'none' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            color: 'yellowgreen',
+            mb: 3,
+            transition: 'transform 0.3s',
+            '&:hover span': {
+              transform: 'translateX(10px)',
+            },
+          }}
+        >
+          <HomeWorkIcon color='primary' />
+          <Box component="span" sx={{ pl: 2 }}>
+            HOME
+          </Box>
+        </Box>
+      </Link>
+
+      <Button
+        onClick={handleLogout}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          color: 'yellowgreen',
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          padding: 0,
+          transition: 'transform 0.3s',
+          '&:hover span': {
+            transform: 'translateX(5px)',
+          },
+        }}
+      >
+        <LogoutIcon  color='primary'  />
+        <Box component="span" sx={{ pl: 2 }}>
+          Logout
+        </Box>
+      </Button>
+    </List>
     </Box>
   );
 };

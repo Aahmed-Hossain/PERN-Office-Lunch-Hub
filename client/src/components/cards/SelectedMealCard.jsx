@@ -1,25 +1,33 @@
 /* eslint-disable react/prop-types */
-import {  Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import { toast } from "react-toastify";
 import { useAxios } from "../../hooks/useAxios";
+import DeleteIcon from "@mui/icons-material/Delete";
 
+const SelectedMealCard = ({ selectedMeal, refetch }) => {
+  const { selectedmeals_id, name, email, date, image, price } = selectedMeal;
 
-const SelectedMealCard = ({selectedMeal,refetch}) => {
-    const {selectedmeals_id, name, email, date, image, price} = selectedMeal;
-
-const handleDelete = (id) => {
-    useAxios.delete(`/selectedMeals/${id}`)
-      .then(response => {
-        toast.success(`${response.data} `)
+  const handleDelete = (id) => {
+    useAxios
+      .delete(`/selectedMeals/${id}`)
+      .then((response) => {
+        toast.success(`${response.data} `);
         refetch();
       })
-      
-      .catch(error => {
-        console.error('Error deleting the item:', error);
+
+      .catch((error) => {
+        console.error("Error deleting the item:", error);
       });
   };
   const confirmDelete = (id) => {
-    
     toast.warn(
       <div>
         <p>{`Do you really want to delete ${name}?`}</p>
@@ -54,45 +62,50 @@ const handleDelete = (id) => {
   };
   return (
     <div>
-        <Card className="flex flex-col md:flex-row lg:flex-row lg:h-[17rem] md:h-full">
-          <CardActionArea className="md:w-1/2 w-full">
-            <CardMedia
+      <Card className="flex flex-col md:flex-row lg:flex-row lg:h-[17rem] md:h-full">
+        <CardActionArea className="md:w-1/2 w-full">
+          <CardMedia
             className="h-full"
-              component="img"
-              height="140"
-              image={image}
-              alt="meal image"
-            />
-          </CardActionArea>
-          <CardContent className="md:w-1/2 w-full">
-            <Typography gutterBottom variant="h5" component="div">
-              {name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {email}
-            </Typography>
-            <Typography gutterBottom variant="h6" component="div">
-              Price: {price} $
-            </Typography>
-            <Typography gutterBottom variant="h6" component="div">
-              Date: {date.slice(0,10)}
-            </Typography>
+            component="img"
+            height="140"
+            image={image}
+            alt="meal image"
+          />
+        </CardActionArea>
+        <CardContent className="md:w-1/2 w-full">
+          <Typography gutterBottom variant="h5" component="div">
+            {name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {email}
+          </Typography>
+          <Typography gutterBottom variant="h6" component="div">
+            Price: {price} $
+          </Typography>
+          <Typography gutterBottom variant="h6" component="div">
+            Date: {date.slice(0, 10)}
+          </Typography>
 
-            <CardActions
+            <Box
               sx={{
                 direction: "flex",
-                justifyContent: "center",
-                marginY: "10px",
+                justifyContent: "start",
+                marginY: "20px",
               }}
             >
-              <Button onClick={()=>confirmDelete(selectedmeals_id)} variant="contained" color="primary">
-                delete
+              <Button
+                onClick={() => confirmDelete(selectedmeals_id)}
+                variant="outlined"
+                startIcon={<DeleteIcon />}
+                color="error"
+              >
+                Delete
               </Button>
-            </CardActions>
-          </CardContent>
-        </Card>
+            </Box>
+        </CardContent>
+      </Card>
     </div>
-  )
-}
+  );
+};
 
-export default SelectedMealCard
+export default SelectedMealCard;
