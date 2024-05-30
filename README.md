@@ -7,14 +7,15 @@
 
 ## Tech Stack
 - React.js
+- Node.js
+- Express.js
+- PostgreSQL
 - Tailwindcss
 - Material Ui
 - React-hook-form
 - tanstack/react-query
 - moment
 - mui/x-date-pickers
-- Node.js
-- Express.js
 - jsonwebtoken
 - pg
 - bcrypt
@@ -26,7 +27,7 @@
 - Jwt authentication implemented
 - Afrer reloading user consisted by saving the user on local storage.
 - Only current date meals will shown on the home page.
-#### Admin dashboard: Admin email: ahmed.hsn.404@gmail.com Password:ahmed.hsn.404@gmail.com
+#### Admin dashboard: (Create an admin by change role on code in the register page. )
 - Admin can add new meal/lunch options.
 - Admin can delete his added lunch options.
 - Admin can't add previous date lunch option , implemented by mui date picker and  moment.
@@ -83,6 +84,7 @@ npm install
 npm run dev
 ```
 
+I managed db on pg Admin and created the db and table on SQL SHELL (psql)
 ```bash
 git https://github.com/Aahmed-Hossain/PERN-Office-Lunch-Hub.git
 cd server
