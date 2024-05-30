@@ -22,6 +22,10 @@
 
 
 ## Key Features
+- Register and Login Implemented.
+- Jwt authentication implemented
+- Afrer reloading user consisted by saving the user on local storage.
+- Only current date meals will shown on the home page.
 #### Admin dashboard: Admin email: ahmed.hsn.404@gmail.com Password:ahmed.hsn.404@gmail.com
 - Admin can add new meal/lunch options.
 - Admin can delete his added lunch options.
@@ -29,11 +33,9 @@
 - Admin can see all menu selected by the employee/users.
 - Only current days menu/lunch option shown on the home page.
 #### Employee dashboard or user dashboard:
--Employee can select a meal.
+- Employee can select a meal.
 - An employee can't select more than one meal option in the current day.
 - Employee can delete his meal after deleting meal employee can select another one meal.
-- Jwt authentication implemented
-- Afrer reloading user consisted by saving local storage.
 
 ## Database Schema
 
