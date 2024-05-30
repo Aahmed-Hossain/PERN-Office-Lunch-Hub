@@ -83,6 +83,13 @@ npm install
 npm run dev
 ```
 
+```bash
+git https://github.com/Aahmed-Hossain/PERN-Office-Lunch-Hub.git
+cd server
+npm install
+nodemon index.js
+```
+
 
 
 
