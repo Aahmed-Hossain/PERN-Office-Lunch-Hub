@@ -1,8 +1,8 @@
 ## Table of Contents
 
-- [Installation](#installation)
-- [Key Features](#key-features)
 - [Tech Stack](#tech-stack)
+- [Key Features](#key-features)
+- [Installation](#installation)
 - [Database Schema](#database-schema)
 
 ## Tech Stack
@@ -27,7 +27,7 @@
 - Jwt authentication implemented
 - Afrer reloading user consisted by saving the user on local storage.
 - Only current date meals will shown on the home page.
-#### Admin dashboard: (Create an admin by change role on code in the register page. )
+#### Admin dashboard: (Create an admin by change role on code in the register page on code base)
 - Admin can add new meal/lunch options.
 - Admin can delete his added lunch options.
 - Admin can't add previous date lunch option , implemented by mui date picker and  moment.
@@ -91,6 +91,16 @@ cd server
 npm install
 nodemon index.js
 ```
+Please change user, password, host, port and database in your local m/c as per your local pg admin.
+const Pool = require('pg').Pool;
+const pool = new Pool({
+user : 'lunchhubuser',
+password: 'lunchHubUser@123',
+host: 'localhost',
+port: 5432,
+database : 'postgres'
+});
+module.exports = pool;
 
 
 
