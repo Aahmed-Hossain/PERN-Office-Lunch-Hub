@@ -4,6 +4,7 @@
 - [Key Features](#key-features)
 - [Installation](#installation)
 - [Database Schema](#database-schema)
+- [API ROUTES](#api-routes)
 
 ## Tech Stack
 - React.js
@@ -92,6 +93,7 @@ npm install
 nodemon index.js
 ```
 Please change user, password, host, port and database in your local m/c as per your local pg admin.
+```bash
 const Pool = require('pg').Pool;
 const pool = new Pool({
 user : 'lunchhubuser',
@@ -101,9 +103,33 @@ port: 5432,
 database : 'postgres'
 });
 module.exports = pool;
+```
 
+## API ROUTES
 
+###### GET METHODS:
+```bash
+http://localhost:3001/meals
+http://localhost:3001/meals/:id
+http://localhost:3001/selectedMeals
+http://localhost:3001/selectedMeals/:email
+http://localhost:3001/selectedMeals/:email/:date
+http://localhost:3001/auth/authorizationals
+```
 
+###### POST METHODS:
+```bash
+http://localhost:3001/meals
+http://localhost:3001/selectedMeals
+http://localhost:3001/auth/login
+http://localhost:3001/auth/register
+```
+
+###### DELETE METHODS:
+```bash
+http://localhost:3001//meals/:id
+http://localhost:3001/selectedMeals/:id
+```
 
 
 
