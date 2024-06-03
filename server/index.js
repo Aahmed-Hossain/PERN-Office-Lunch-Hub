@@ -5,20 +5,14 @@ const pool = require('./db')
 require('dotenv').config();
 const port = process.env.PORT || 3001;
 
-
 // middleware
 app.use(cors());
 app.use(express.json())
-
-
-
 
 // ROUTES
 // register and login
 app.use('/auth', require('./jwtAuth'));
 // create a lunch menu/meal;;
-
-
 
 app.post("/meals", async(req, res)=> {
     try {
@@ -63,8 +57,6 @@ const {id} = req.params;
 const deletedMeal = await pool.query('DELETE FROM meal WHERE meal_id=$1',[id]);
 res.json('Your Meal Deleted Successfully');
 });
-
-
 
 // post a selected meal;
 app.post("/selectedMeals", async (req, res) => {
